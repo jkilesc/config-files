@@ -1,6 +1,5 @@
-export PATH="/usr/local/share/npm/bin/:/usr/local/bin:/Users/jeff/Applications/sbt/bin:$PATH"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Customize the prompt
+export PS1="👽 \w/∴"
 
 # List aliases
 alias ls='ls -Gpa'
@@ -21,5 +20,11 @@ alias ..='cd ..'
 export GREP_OPTIONS='--color=auto'
 export GREP_OPTIONS='1;31' # green for matches
 
-# Customize the prompt
-export PS1="👽 \w/∴"
+# Color git
+git config --global color.ui true
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Define any user-specific variables here
+source ~/.bashrc_custom
+
