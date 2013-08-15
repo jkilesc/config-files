@@ -76,11 +76,6 @@ if &tabpagemax < 50
 	set tabpagemax=50
 endif
 
-"Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux'
-	set &t_Co=16
-endif
-
 "CTRL+U undo's the last line typed in insert mode and CTRL+W does the same for
 "the last word, adding these lines allows you to push <ESC> then u to undo the
 "undo caused by CTRL+U and CTRL+W if they are typed by accident. Its described
@@ -122,3 +117,19 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "Set syntax highlighting for unusual file types
 au BufNewFile,BufRead *.pde set filetype=java
+
+"Git branch
+function! GitBranch()
+    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    if branch != ''
+        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
+    en
+    return ''
+endfunction
+
+" Format the statusline
+set statusline=%F
+set statusline+=%=  
+set statusline+=Line:
+set statusline+=%l/%L
+set statusline+=%{GitBranch()}
