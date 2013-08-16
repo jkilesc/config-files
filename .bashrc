@@ -1,5 +1,5 @@
 # Customize the prompt
-export PS1="👽 \w/∴"
+export PS1="👽 \[$(tput bold)\]\[$(tput setaf 6)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 1)\]\w\[$(tput setaf 3)\]∴\[$(tput sgr0)\]"
 
 # List aliases
 alias ls='ls -Gpa'
