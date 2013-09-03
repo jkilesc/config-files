@@ -133,3 +133,7 @@ set statusline+=%=
 set statusline+=Line:
 set statusline+=%l/%L
 set statusline+=%{GitBranch()}
+
+" Manage Panes
+map <C-W><Bar> <C-W>v<C-W><Right>
+map <C-W>- <C-W>s<C-W><Down>
