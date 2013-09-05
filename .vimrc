@@ -1,6 +1,5 @@
 set nocompatible
 syntax on
-filetype plugin indent on
 
 " Configure Vundle
 filetype on " Without this vim emits a zero exit status because of later :ft off
@@ -13,8 +12,7 @@ if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
 endif
 
-"This stuff is from sensible.vim found at
-"github.com/tpope/vim-sensible/blog/master/plugin/sensible.vim
+filetype plugin indent on
 
 set autoindent
 
@@ -86,21 +84,6 @@ if &tabpagemax < 50
 	set tabpagemax=50
 endif
 
-"CTRL+U undo's the last line typed in insert mode and CTRL+W does the same for
-"the last word, adding these lines allows you to push <ESC> then u to undo the
-"undo caused by CTRL+U and CTRL+W if they are typed by accident. Its described
-"further here: vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
-inoremap <c-u> <c-g>u<c-u>
-" inoremap <c-w> <c-g>u<c-w>
-
-
-"Fix & use, to apply last search with last flags
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-
-"Yank from the cursor to the end of the line into register
-nnoremap Y y$
-
 "Deal with spaces, tabs and lines
 "Replace all tabs with 4 spaces
 set tabstop=4
@@ -117,8 +100,37 @@ set relativenumber
 set ignorecase
 set smartcase
 
-"Shortcut to open the NERDTree plugin
-map <C-n> :NERDTreeToggle<CR>
+
+" Keyboard Shortcuts
+let mapleader = ','
+
+"CTRL+U undo's the last line typed in insert mode and CTRL+W does the same for
+"the last word, adding these lines allows you to push <ESC> then u to undo the
+"undo caused by CTRL+U and CTRL+W if they are typed by accident. Its described
+"further here: vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
+inoremap <c-u> <c-g>u<c-u>
+" inoremap <c-w> <c-g>u<c-w>
+
+"Fix & use, to apply last search with last flags
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+"Yank from the cursor to the end of the line into register
+nnoremap Y y$
+
+map <leader>l :Align
+nmap <leader>a :Ack
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+nmap <leader>t :CtrlP<p> " t because this came from the CtrlT plugin originally
+nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nmap <leader>] :TagbarToggle<CR>
+nmap <leader><space> :call whitespace#strip_trailing()<CR>
+nmap <leader>g :GitGutterToggle<CR>
+nmap <leader>c <Plug>Kwbd
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'<CR>
+
 
 "Add TextMate behavior to UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
