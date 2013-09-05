@@ -1,7 +1,17 @@
-" Pathogen
-execute pathogen#infect()
+set nocompatible
 syntax on
 filetype plugin indent on
+
+" Configure Vundle
+filetype on " Without this vim emits a zero exit status because of later :ft off
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Install Vundle bundles
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+endif
 
 "This stuff is from sensible.vim found at
 "github.com/tpope/vim-sensible/blog/master/plugin/sensible.vim
@@ -81,7 +91,7 @@ endif
 "undo caused by CTRL+U and CTRL+W if they are typed by accident. Its described
 "further here: vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
 inoremap <c-u> <c-g>u<c-u>
-inoremap <c-w> <c-g>u<c-w>
+" inoremap <c-w> <c-g>u<c-w>
 
 
 "Fix & use, to apply last search with last flags
