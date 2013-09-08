@@ -1,4 +1,4 @@
-set nocompatible
+" set nocompatible
 syntax on
 
 " Configure Vundle
@@ -39,6 +39,12 @@ set tabstop=4         " Deal with spaces, tabs and lines
 set ttimeout          " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
 set wildmenu          " Autocomplete vim commands when you push tab
+
+" Resizing splits, use a single key so it can be held down
+map < <C-W>>
+map > <C-W><
+map + <C-W>+
+map - <C-W>-
 
 set mouse=a
 if exists('$TMUX')  " Support resizing in tmux
@@ -81,8 +87,10 @@ nmap <leader>g :GitGutterToggle<CR>
 nmap <leader>c <Plug>Kwbd
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'<CR>
 
+" Configure NerdTree
+let NERDTreeShowHidden=1 " Show hidden files
 
-"Add TextMate behavior to UltiSnips
+" Add TextMate behavior to UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -107,8 +115,8 @@ set statusline+=%l/%L
 set statusline+=%{GitBranch()}
 
 " Manage Panes
-map <C-W><Bar> <C-W>v<C-W><Right>
-map <C-W>- <C-W>s<C-W><Down>
+map <C-W><bar> <C-W>v<C-W><Right>
+map <C-W>_ <C-W>s<C-W><Down>
 
 " Color Scheme
 colorscheme elflord 
