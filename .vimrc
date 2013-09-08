@@ -6,100 +6,50 @@ filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-
 " Install Vundle bundles
 if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
 endif
-
 filetype plugin indent on
 
 set autoindent
-
-"Searching included files (i) is too slow to be practical, so we'll remove
-"this from the auto complete functionality. Explenation here:
-"stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow
-set complete -=i 
-
-"Jump to the matching bracket if it exists, if it doesn't beep
-set showmatch
-
-set smarttab
-
-"Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
-"starting with 0 like they are normal numbers
-set nrformats-=octal
-
-"Setting shiftround with indent to a multiple of shiftwidth when using > or <
-"instead of just adding an additional shiftwidth to the selection
-set shiftround
-
-"Sets the amount of time to wait during keyboard combinations
-set ttimeout
-set ttimeoutlen=50
-
-"Incremental search - will begin searching as you type a search phrase
-set incsearch
-
-"Set CTRL+L to clear last highlighted search word
-if maparg('<C-L>', 'n') ==# ''
-	nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
-
-"Set the status of all windows open to show by default
-set laststatus=2
-
-"Shows current line number and column in bottom right corner
-set ruler
-
-"Shows information about the current command being used, namely visual mode
-set showcmd
-
-"Autocomplete vim commands when you push tab
-set wildmenu
-
-"Set there to always be two line above/below and 5 spaces to each side of
-"whatever you're currently working on
-"if !&scrolloff
-	set scrolloff=1
-"endif
-"if !&sidescrolloff
-	set sidescrolloff=5
-"endif
+set autoread          " Automatically update a file in vim when it has been updated outside of vim
+set clipboard=unnamed " Synchronize Vim's default register and the clipboard register to copy and paste
+set complete -=i      " Searching included files (i) is too slow to be practical in auto complete
 set display+=lastline
-
-"Automatically update a file in vim when it has been updated outside of vim
-set autoread
-
-"Interpret mac line endings correctly
-set fileformats+=mac
-
-"Save the last 1000 vim commands used
-if &history < 1000
-	set history=1000
-endif
-
-"Number of tabs, as in web browser tabs not the keyboard tab, allowed in vim
-if &tabpagemax < 50
-	set tabpagemax=50
-endif
-
-"Deal with spaces, tabs and lines
-"Replace all tabs with 4 spaces
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-"Expand tabs to look like they are 8 spaces instead of 4
-set expandtab
+set expandtab         " Expand tabs to look like they are 8 spaces instead of 4
+set fileformats+=mac  " Interpret mac line endings correctly
+set ignorecase        " Ignore case in searching
+set incsearch         " Incremental search - will begin searching as you type a search phrase
+set laststatus=2      " Set the status of all windows open to show by default
+set nrformats-=octal  " Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
+set number            " Show line numbers
 set relativenumber
+set ruler             " Shows current line number and column in bottom right corner
+set scrolloff=3       " Set there to always be 3 line above/below and 5 spaces to each side of
+set shiftround        " Setting shiftround with indent to a multiple of shiftwidth when using > or <
+set shiftwidth=4      " Replace all tabs with 4 spaces
+set showcmd           " Shows information about the current command being used, namely visual mode
+set showmatch         " Jump to the matching bracket if it exists, if it doesn't beep
+set sidescrolloff=5 
+set smartcase         " Unless we specify a case
+set smarttab
+set softtabstop=4
+set tabstop=4         " Deal with spaces, tabs and lines
+set ttimeout          " Sets the amount of time to wait during keyboard combinations
+set ttimeoutlen=50
+set wildmenu          " Autocomplete vim commands when you push tab
 
-"Configure search and highlight
-"If the 'ignorecase' option is on, the case of normal letters is ignored.
-"'smartcase' can be set to ignore case when the pattern contains lowercase
-"letters only.
-set ignorecase
-set smartcase
-
+set mouse=a
+if exists('$TMUX')  " Support resizing in tmux
+  set ttymouse=xterm2
+endif
+if &history < 1000
+	set history=1000 " Save the last 1000 vim commands used
+endif
+if &tabpagemax < 50
+	set tabpagemax=50 " Number of tabs, as in web browser tabs not the keyboard tab, allowed in vim
+endif
 
 " Keyboard Shortcuts
 let mapleader = ','
@@ -116,16 +66,17 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 "Yank from the cursor to the end of the line into register
-nnoremap Y y$
+"nnoremap Y y$
 
-map <leader>l :Align
+map <leader>l :Align 
 nmap <leader>a :Ack
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
-nmap <leader>t :CtrlP<p> " t because this came from the CtrlT plugin originally
+nmap <leader>t :CtrlP<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-nmap <leader>] :TagbarToggle<CR>
+"nmap <leader>] :TagbarToggle<CR>
+nmap <leader>] :TlistToggle
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
 nmap <leader>g :GitGutterToggle<CR>
 nmap <leader>c <Plug>Kwbd
@@ -159,3 +110,13 @@ set statusline+=%{GitBranch()}
 " Manage Panes
 map <C-W><Bar> <C-W>v<C-W><Right>
 map <C-W>- <C-W>s<C-W><Down>
+
+" Color Scheme
+colorscheme elflord 
+" Color Indents using vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=16 " Black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 " Grey

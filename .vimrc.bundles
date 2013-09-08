@@ -1,11 +1,13 @@
 " All the bundles to load through Vundle    
+" Run :BundleInstall when this file is updated
+"   Which requires saving this file and relaunching vim
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
+Bundle 'int3/vim-taglist-plus'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nono/vim-handlebars'
@@ -18,5 +20,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-vividchalk'
+Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'vim-scripts/kwbdi.vim'
