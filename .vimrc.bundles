@@ -2,6 +2,7 @@
 " Run :BundleInstall when this file is updated
 "   Which requires saving this file and relaunching vim
 Bundle 'airblade/vim-gitgutter'
+Bundle '~/.vim/bundles/whitespace/whitespace/.git'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
