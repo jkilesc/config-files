@@ -37,3 +37,5 @@ git config --global color.ui true
 
 # Define any user-specific variables here
 source ~/.bashrc_custom
+
+[[ -s /Users/jeff/.nvm/nvm.sh ]] && . /Users/jeff/.nvm/nvm.sh # This loads NVM

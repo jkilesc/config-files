@@ -11,40 +11,47 @@ if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
 endif
 filetype plugin indent on
+filetype plugin on
 
 set autoindent
-set autoread          " Automatically update a file in vim when it has been updated outside of vim
-set clipboard=unnamed " Synchronize Vim's default register and the clipboard register to copy and paste
-set complete -=i      " Searching included files (i) is too slow to be practical in auto complete
+set autoread                         " Automatically update a file in vim when it has been updated outside of vim
+set clipboard=unnamed                " Synchronize Vim's default register and the clipboard register to copy and paste
+set complete -=i                     " Searching included files (i) is too slow to be practical in auto complete
+set directory-=.                     " don't store swapfiles in the current directory
 set display+=lastline
-set expandtab         " Expand tabs to look like they are 8 spaces instead of 4
-set fileformats+=mac  " Interpret mac line endings correctly
-set ignorecase        " Ignore case in searching
-set incsearch         " Incremental search - will begin searching as you type a search phrase
-set laststatus=2      " Set the status of all windows open to show by default
-set nrformats-=octal  " Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
-set number            " Show line numbers
+set expandtab                        " Expand tabs to look like they are 8 spaces instead of 4
+set fileformats+=mac                 " Interpret mac line endings correctly
+set ignorecase                       " Ignore case in searching
+set incsearch                        " Incremental search - will begin searching as you type a search phrase
+set laststatus=2                     " Set the status of all windows open to show by default
+set nrformats-=octal                 " Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
+set number                           " Show line numbers
+set omnifunc=syntaxcomplete#Complete " Enable autocomplete
 set relativenumber
-set ruler             " Shows current line number and column in bottom right corner
-set scrolloff=3       " Set there to always be 3 line above/below and 5 spaces to each side of
-set shiftround        " Setting shiftround with indent to a multiple of shiftwidth when using > or <
-set shiftwidth=4      " Replace all tabs with 4 spaces
-set showcmd           " Shows information about the current command being used, namely visual mode
-set showmatch         " Jump to the matching bracket if it exists, if it doesn't beep
-set sidescrolloff=5 
-set smartcase         " Unless we specify a case
+set ruler                            " Shows current line number and column in bottom right corner
+set scrolloff=3                      " Set there to always be 3 line above/below and 5 spaces to each side of
+set shiftround                       " Setting shiftround with indent to a multiple of shiftwidth when using > or <
+set shiftwidth=2                     " Replace all tabs with 2 spaces
+set showcmd                          " Shows information about the current command being used, namely visual mode
+set showmatch                        " Jump to the matching bracket if it exists, if it doesn't beep
+set sidescrolloff=5
+set smartcase                        " Unless we specify a case
 set smarttab
-set softtabstop=4
-set tabstop=4         " Deal with spaces, tabs and lines
-set ttimeout          " Sets the amount of time to wait during keyboard combinations
+set softtabstop=2
+set tabstop=2                        " Deal with spaces, tabs and lines
+set ttimeout                         " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
-set wildmenu          " Autocomplete vim commands when you push tab
+set wildmenu                         " Autocomplete vim commands when you push tab
+
+" Indenting
+vmap > >>
+vmap < <<
 
 " Resizing splits, use a single key so it can be held down
-map < <C-W>>
-map > <C-W><
-map + <C-W>+
-map - <C-W>-
+nmap < <C-W>>
+nmap > <C-W><
+nmap + <C-W>+
+nmap - <C-W>-
 
 set mouse=a
 if exists('$TMUX')  " Support resizing in tmux
@@ -98,21 +105,22 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "Set syntax highlighting for unusual file types
 au BufNewFile,BufRead *.pde set filetype=java
 
-"Git branch
-function! GitBranch()
-    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-    if branch != ''
-        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
-    en
-    return ''
-endfunction
+"Git branch " This was causing me problems with ghost letters appearing in
+"files so I disabled it
+" function! GitBranch()
+"     let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+"     if branch != ''
+"         return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
+"     en
+"     return ''
+" endfunction
 
 " Format the statusline
 set statusline=%F
 set statusline+=%=  
 set statusline+=Line:
 set statusline+=%l/%L
-set statusline+=%{GitBranch()}
+" set statusline+=%{GitBranch()}
 
 " Manage Panes
 map <C-W><bar> <C-W>v<C-W><Right>
