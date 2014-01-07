@@ -21,9 +21,12 @@ set directory-=.                     " don't store swapfiles in the current dire
 set display+=lastline
 set expandtab                        " Expand tabs to look like they are 8 spaces instead of 4
 set fileformats+=mac                 " Interpret mac line endings correctly
+set foldlevelstart=1
+set foldmethod=syntax
 set ignorecase                       " Ignore case in searching
 set incsearch                        " Incremental search - will begin searching as you type a search phrase
 set laststatus=2                     " Set the status of all windows open to show by default
+set nowrap                           " Turn off wordwrap
 set nrformats-=octal                 " Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
 set number                           " Show line numbers
 set omnifunc=syntaxcomplete#Complete " Enable autocomplete
@@ -38,18 +41,30 @@ set sidescrolloff=5
 set smartcase                        " Unless we specify a case
 set smarttab
 set softtabstop=2
+set spell                            " Turn on spell check, should be intelligent enough to work with html
 set tabstop=2                        " Deal with spaces, tabs and lines
 set ttimeout                         " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
-set wildmenu                         " Autocomplete vim commands when you push tab
+set wildmenu                         " Autocomplete vim commands when you push tab in the menu
+
+" Folding
+let javaScript_fold=1
+
+" Change p to move the cursor to the end of the pasted item after pasting
+" noremap p gpk
 
 " Indenting
 vmap > >>
 vmap < <<
 
+" Remap ultisnips so it doesn't interfere with you complete me
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 " Resizing splits, use a single key so it can be held down
-nmap < <C-W>>
-nmap > <C-W><
+nmap > <C-W>>
+nmap < <C-W><
 nmap + <C-W>+
 nmap - <C-W>-
 
@@ -97,30 +112,14 @@ map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 " Configure NerdTree
 let NERDTreeShowHidden=1 " Show hidden files
 
-" Add TextMate behavior to UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 "Set syntax highlighting for unusual file types
 au BufNewFile,BufRead *.pde set filetype=java
-
-"Git branch " This was causing me problems with ghost letters appearing in
-"files so I disabled it
-" function! GitBranch()
-"     let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-"     if branch != ''
-"         return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
-"     en
-"     return ''
-" endfunction
+au BufNewFile,BufRead *.ejs set filetype=html
 
 " Format the statusline
 set statusline=%F
 set statusline+=%=  
-set statusline+=Line:
 set statusline+=%l/%L
-" set statusline+=%{GitBranch()}
 
 " Manage Panes
 map <C-W><bar> <C-W>v<C-W><Right>
@@ -135,3 +134,7 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=16 " Black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 " Grey
+
+" Error colors
+hi clear SpellBad
+hi SpellBad cterm=underline

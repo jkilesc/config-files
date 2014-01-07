@@ -9,7 +9,7 @@ export PS1="👽 \[$(tput bold)\]\[$(tput setaf 6)\]\u\[$(tput setaf 7)\]@\[$(tp
 set -o vi
 
 # Programs
-alias vim='/Applications/MacVim.app/Contents/MacOS/vim'
+#alias vim='/Applications/MacVim.app/Contents/MacOS/vim'
 
 # List aliases
 alias ls='ls -Gpa'
