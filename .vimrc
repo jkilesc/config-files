@@ -34,15 +34,15 @@ set relativenumber
 set ruler                            " Shows current line number and column in bottom right corner
 set scrolloff=3                      " Set there to always be 3 line above/below and 5 spaces to each side of
 set shiftround                       " Setting shiftround with indent to a multiple of shiftwidth when using > or <
-set shiftwidth=2                     " Replace all tabs with 2 spaces
+set shiftwidth=4                     " Replace all tabs with 2 spaces
 set showcmd                          " Shows information about the current command being used, namely visual mode
 set showmatch                        " Jump to the matching bracket if it exists, if it doesn't beep
 set sidescrolloff=5
 set smartcase                        " Unless we specify a case
 set smarttab
-set softtabstop=2
+set softtabstop=4
 set spell                            " Turn on spell check, should be intelligent enough to work with html
-set tabstop=2                        " Deal with spaces, tabs and lines
+set tabstop=4                        " Deal with spaces, tabs and lines
 set ttimeout                         " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
 set wildmenu                         " Autocomplete vim commands when you push tab in the menu
@@ -116,6 +116,9 @@ let NERDTreeShowHidden=1 " Show hidden files
 au BufNewFile,BufRead *.pde set filetype=java
 au BufNewFile,BufRead *.ejs set filetype=html
 
+" Syntactic
+let g:syntastic_javascript_checkers = ['jshint']
+
 " Format the statusline
 set statusline=%F
 set statusline+=%=  
@@ -134,6 +137,11 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=16 " Black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 " Grey
+
+" Highlight past 79 columns
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+let &colorcolumn=join(range(80,999),",")
+
 
 " Error colors
 hi clear SpellBad
