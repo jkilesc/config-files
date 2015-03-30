@@ -1,1 +1,3 @@
-/Users/jeff/.config/fish/functions/del.fish
+function del 
+    rmtrash $argv
+end

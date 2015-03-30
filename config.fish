@@ -1,1 +1,2 @@
-/Users/jeff/.config/fish/config.fish
+setenv EDITOR vim
+
