@@ -1,6 +1,9 @@
 " set nocompatible
 syntax on
 
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
+
 " Configure Vundle
 filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
@@ -22,7 +25,7 @@ set display+=lastline
 set expandtab                        " Expand tabs to look like they are 8 spaces instead of 4
 set fileformats+=mac                 " Interpret mac line endings correctly
 set foldlevelstart=1
-set foldmethod=syntax
+set foldmethod=indent
 set ignorecase                       " Ignore case in searching
 set incsearch                        " Incremental search - will begin searching as you type a search phrase
 set laststatus=2                     " Set the status of all windows open to show by default
@@ -115,9 +118,14 @@ let NERDTreeShowHidden=1 " Show hidden files
 "Set syntax highlighting for unusual file types
 au BufNewFile,BufRead *.pde set filetype=java
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufRead,BufNewFile *.md set filetype=markdown
 
 " Syntactic
 let g:syntastic_javascript_checkers = ['jshint']
+
+" Line wrapping
+autocmd bufreadpre *.txt setlocal textwidth=99
+autocmd bufreadpre *.md setlocal textwidth=99
 
 " Format the statusline
 set statusline=%F
@@ -138,9 +146,9 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=16 " Black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 " Grey
 
-" Highlight past 79 columns
+" Highlight past 99 columns
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
-let &colorcolumn=join(range(80,999),",")
+let &colorcolumn=join(range(100,999),",")
 
 
 " Error colors

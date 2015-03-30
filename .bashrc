@@ -2,7 +2,7 @@
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-#export PS1="\[\033[00m\]\u@\h\[\033[01;34m\] \W \[\033[31m\]\$(parse_git_branch) \[\033[00m\]$\[\033[00m\] "
+# export PS1="\[\033[00m\]\u@\h\[\033[01;34m\] \W \[\033[31m\]\$(parse_git_branch) \[\033[00m\]$\[\033[00m\] "
 export PS1="👽 \[$(tput bold)\]\[$(tput setaf 6)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 1)\]\w$(parse_git_branch)\[$(tput setaf 3)\]∴\[$(tput sgr0)\] "
 
 # Change input to use VI mode
@@ -16,6 +16,12 @@ alias ls='ls -Gpa'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Postgres alias
+alias startpg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+
+# Move to trash instead of delete completely
+alias del='rmtrash'
 
 # Safety
 alias rm='rm -i'
@@ -41,3 +47,7 @@ source ~/.bashrc_custom
 [[ -s /Users/jeff/.nvm/nvm.sh ]] && . /Users/jeff/.nvm/nvm.sh # This loads NVM
 
 . /usr/local/bin/virtualenvwrapper.sh
+
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export PATH=/usr/local/sbin:$PATH
