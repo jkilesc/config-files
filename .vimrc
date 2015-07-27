@@ -7,13 +7,45 @@ set fileencoding=utf-8  " The encoding written to file.
 " Configure Vundle
 filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-" Install Vundle bundles
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-endif
-filetype plugin indent on
+
+
+call plug#begin('~/.vim/plugged')
+
+"filetypmck/vim-coffee-script'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'rmanalan/jshint.vim'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'gmarik/vundle'
+Plug 'gregsexton/MatchTag'
+Plug 'groenewege/vim-less'
+Plug 'int3/vim-taglist-plus'
+Plug 'kien/ctrlp.vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nono/vim-handlebars'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vividchalk'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/greplace.vim'
+Plug 'vim-scripts/kwbdi.vim'
+Plug 'chrisbra/Recover.vim'
+Plug 'othree/xml.vim' plugin indent on
+
+" Add plugins to &runtimepath
+call plug#end()
+
+
+
 filetype plugin on
 
 set autoindent
