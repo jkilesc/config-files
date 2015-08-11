@@ -9,7 +9,7 @@ filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
 
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 
 "filetypmck/vim-coffee-script'
 "Plug 'airblade/vim-gitgutter'
