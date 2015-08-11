@@ -39,14 +39,13 @@ Plug 'vim-scripts/Align'
 Plug 'vim-scripts/greplace.vim'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'chrisbra/Recover.vim'
-Plug 'othree/xml.vim' plugin indent on
+Plug 'othree/xml.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
 
-
-
 filetype plugin on
+filetype plugin indent on
 
 set autoindent
 set autoread                         " Automatically update a file in vim when it has been updated outside of vim
@@ -104,7 +103,7 @@ nmap + <C-W>+
 nmap - <C-W>-
 
 set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
+if exists('$TMUX') && !has('nvim')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
 if &history < 1000
@@ -156,8 +155,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 let g:syntastic_javascript_checkers = ['jshint']
 
 " Line wrapping
-autocmd bufreadpre *.txt setlocal textwidth=99
-autocmd bufreadpre *.md setlocal textwidth=99
+autocmd bufreadpre *.txt setlocal textwidth=119
+autocmd bufreadpre *.md setlocal textwidth=119
 
 " Format the statusline
 set statusline=%F
@@ -178,9 +177,9 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=16 " Black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=8 " Grey
 
-" Highlight past 99 columns
+" Highlight past 119 columns
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
-let &colorcolumn=join(range(100,999),",")
+let &colorcolumn=join(range(120,999),",")
 
 
 " Error colors
