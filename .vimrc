@@ -15,7 +15,7 @@ call plug#begin('~/.nvim/plugged')
 "Plug 'airblade/vim-gitgutter'
 "Plug 'altercation/vim-colors-solarized'
 "Plug 'rmanalan/jshint.vim'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gmarik/vundle'
@@ -40,6 +40,9 @@ Plug 'vim-scripts/greplace.vim'
 Plug 'vim-scripts/kwbdi.vim'
 Plug 'chrisbra/Recover.vim'
 Plug 'othree/xml.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'terryma/vim-expand-region'
+Plug 'godlygeek/tabular'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -68,15 +71,15 @@ set relativenumber
 set ruler                            " Shows current line number and column in bottom right corner
 set scrolloff=3                      " Set there to always be 3 line above/below and 5 spaces to each side of
 set shiftround                       " Setting shiftround with indent to a multiple of shiftwidth when using > or <
-set shiftwidth=4                     " Replace all tabs with 2 spaces
+set shiftwidth=2                     " Replace all tabs with 2 spaces
 set showcmd                          " Shows information about the current command being used, namely visual mode
 set showmatch                        " Jump to the matching bracket if it exists, if it doesn't beep
 set sidescrolloff=5
 set smartcase                        " Unless we specify a case
 set smarttab
-set softtabstop=4
+set softtabstop=2
 set spell                            " Turn on spell check, should be intelligent enough to work with html
-set tabstop=4                        " Deal with spaces, tabs and lines
+set tabstop=2                        " Deal with spaces, tabs and lines
 set ttimeout                         " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
 set wildmenu                         " Autocomplete vim commands when you push tab in the menu
@@ -149,6 +152,7 @@ let NERDTreeShowHidden=1 " Show hidden files
 "Set syntax highlighting for unusual file types
 au BufNewFile,BufRead *.pde set filetype=java
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.mustache set filetype=html
 au BufRead,BufNewFile *.md set filetype=markdown
 
 " Syntactic
@@ -185,3 +189,21 @@ let &colorcolumn=join(range(120,999),",")
 " Error colors
 hi clear SpellBad
 hi SpellBad cterm=underline
+
+" Make ctrl+p faster
+let g:ctrlp_use_caching = 0
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+    \ }
+endif
+
+" You Complete Me options
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+
