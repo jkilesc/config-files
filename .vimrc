@@ -22,7 +22,7 @@ Plug 'gregsexton/MatchTag'
 Plug 'groenewege/vim-less'
 Plug 'int3/vim-taglist-plus'
 Plug 'kien/ctrlp.vim'
-Plug 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim' " Need to run npm install in ~/.nvim/plugged/tern_for_vim
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nono/vim-handlebars'
 Plug 'moll/vim-node'
@@ -68,7 +68,7 @@ set laststatus=2                     " Set the status of all windows open to sho
 set nowrap                           " Turn off wordwrap
 set nrformats-=octal                 " Remove octal so that CTRL+A and CTRL+X can increment and decrement numbers
 set number                           " Show line numbers
-set omnifunc=syntaxcomplete#Complete " Enable autocomplete
+" set omnifunc=syntaxcomplete#Complete " Enable autocomplete
 set relativenumber
 set ruler                            " Shows current line number and column in bottom right corner
 set scrolloff=3                      " Set there to always be 3 line above/below and 5 spaces to each side of
@@ -110,6 +110,10 @@ nmap < <C-W><
 nmap + <C-W>+
 nmap - <C-W>-
 
+" Increment and decrement numbers with + and -
+nnoremap <kPlus> <C-a>
+nnoremap <kMinus> <C-x>
+
 set mouse=a
 if exists('$TMUX') && !has('nvim')  " Support resizing in tmux
   set ttymouse=xterm2
@@ -143,11 +147,12 @@ nmap <leader>a :Ack
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>d :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
-nmap <leader>t :CtrlP<CR>
+nmap <leader>t :TernType<CR>
+nmap <leader>gd :TernDef<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nmap <leader>] :TlistToggle
 nmap <leader><space> :call whitespace#strip_trailing()<CR>
-nmap <leader>g :GitGutterToggle<CR>
+" nmap <leader>g :GitGutterToggle<CR>
 nmap <leader>c <Plug>Kwbd
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'<CR>
 
@@ -212,6 +217,7 @@ endif
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
-" Increment and decrement numbers with + and -
-nnoremap <kPlus> <C-a>
-nnoremap <kMinus> <C-x>
+" Tern
+let g:tern_map_keys=1
+let tern#is_show_argument_hints_enabled=1
+let g:tern_show_argument_hints='on_hold'
