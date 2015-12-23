@@ -8,13 +8,12 @@ set fileencoding=utf-8  " The encoding written to file.
 filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
 
-
+" Run PlugInstall or PlugClean
 call plug#begin('~/.nvim/plugged')
 
 "filetypmck/vim-coffee-script'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'altercation/vim-colors-solarized'
-"Plug 'rmanalan/jshint.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
@@ -23,10 +22,11 @@ Plug 'gregsexton/MatchTag'
 Plug 'groenewege/vim-less'
 Plug 'int3/vim-taglist-plus'
 Plug 'kien/ctrlp.vim'
-Plug 'marijnh/tern_for_vim'
+Plug 'ternjs/tern_for_vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nono/vim-handlebars'
-Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
+" Plug 'pangloss/vim-javascript' " This was fucking up the formatting of comments
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
@@ -42,6 +42,8 @@ Plug 'chrisbra/Recover.vim'
 Plug 'othree/xml.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'terryma/vim-expand-region'
+" Plug 'wookiehangover/jshint.vim' " These were making vim slow
+" Plug 'Shutnik/jshint2.vim'
 Plug 'godlygeek/tabular'
 
 " Add plugins to &runtimepath
@@ -80,6 +82,7 @@ set smarttab
 set softtabstop=2
 set spell                            " Turn on spell check, should be intelligent enough to work with html
 set tabstop=2                        " Deal with spaces, tabs and lines
+set textwidth=119                    " Makes comments wrap at the end of the line
 set ttimeout                         " Sets the amount of time to wait during keyboard combinations
 set ttimeoutlen=50
 set wildmenu                         " Autocomplete vim commands when you push tab in the menu
@@ -95,9 +98,11 @@ vmap > >>
 vmap < <<
 
 " Remap ultisnips so it doesn't interfere with you complete me
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" This is going to interfere with switching between windows, commenting for
+" now until I can figure out a better method
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Resizing splits, use a single key so it can be held down
 nmap > <C-W>>
@@ -207,3 +212,6 @@ endif
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
+" Increment and decrement numbers with + and -
+nnoremap <kPlus> <C-a>
+nnoremap <kMinus> <C-x>
