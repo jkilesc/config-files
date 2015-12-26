@@ -31,7 +31,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
@@ -42,7 +42,7 @@ Plug 'chrisbra/Recover.vim'
 Plug 'othree/xml.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'terryma/vim-expand-region'
-" Plug 'wookiehangover/jshint.vim' " These were making vim slow
+Plug 'wookiehangover/jshint.vim' " These were making vim slow
 " Plug 'Shutnik/jshint2.vim'
 Plug 'godlygeek/tabular'
 
