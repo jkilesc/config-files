@@ -4,12 +4,15 @@ syntax on
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 
-" Configure Vundle
 filetype on " Without this vim emits a zero exit status because of later :ft off
 filetype off
 
+" First insall vim-plug:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" then when adding a new plugin:
 " Run PlugInstall or PlugClean
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 "filetypmck/vim-coffee-script'
 "Plug 'airblade/vim-gitgutter'
@@ -42,7 +45,7 @@ Plug 'chrisbra/Recover.vim'
 Plug 'othree/xml.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'terryma/vim-expand-region'
-Plug 'wookiehangover/jshint.vim' " These were making vim slow
+" Plug 'wookiehangover/jshint.vim' " These were making vim slow
 " Plug 'Shutnik/jshint2.vim'
 Plug 'godlygeek/tabular'
 
@@ -166,7 +169,7 @@ au BufNewFile,BufRead *.mustache set filetype=html
 au BufRead,BufNewFile *.md set filetype=markdown
 
 " Syntactic
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Line wrapping
 autocmd bufreadpre *.txt setlocal textwidth=119
